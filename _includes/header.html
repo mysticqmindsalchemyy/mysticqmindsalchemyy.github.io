@@ -1,0 +1,28 @@
+{% assign on_musings = false %}{% if page.url contains '/musings/' or page.url contains 'mulank' %}{% assign on_musings = true %}{% endif %}
+{% assign on_weekly = false %}{% if page.url contains '/weekly-tarot/' or page.category == 'Weekly Tarot' %}{% assign on_weekly = true %}{% assign on_musings = false %}{% endif %}
+<header class="site-nav">
+  <a href="{{ '/' | relative_url }}" class="site-nav-brand" aria-label="{{ site.title }} home">
+    <img src="{{ '/assets/img/logo.webp' | relative_url }}" alt="{{ site.title }} logo" width="96" height="64">
+  </a>
+  <nav aria-label="Main">
+    <ul class="site-nav-links" id="siteNavLinks">
+      <li class="has-sub">
+        <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="subAbout">About <span aria-hidden="true">▾</span></button>
+        <ul class="sub-menu" id="subAbout">
+          <li><a href="{{ '/#about' | relative_url }}">About MyMA</a></li>
+          <li><a href="{{ '/#founder' | relative_url }}">Meet the Founder</a></li>
+          <li><a href="{{ '/#process' | relative_url }}">How It Works</a></li>
+          <li><a href="{{ '/#testimonials' | relative_url }}">Testimonials</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ '/#services' | relative_url }}">Services</a></li>
+      <li><a href="{{ '/weekly-tarot/' | relative_url }}"{% if on_weekly %} class="active"{% endif %}>Weekly Tarot</a></li>
+      <li><a href="{{ '/musings/' | relative_url }}"{% if on_musings %} class="active"{% endif %}>{{ site.musings_name }}</a></li>
+      <li><a href="{{ '/#book' | relative_url }}" class="site-nav-book">Book a Session</a></li>
+    </ul>
+  </nav>
+  <a href="{{ '/#book' | relative_url }}" class="site-nav-book-mobile">Book a Session</a>
+  <button class="site-nav-toggle" id="siteNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNavLinks">
+    <span></span><span></span><span></span>
+  </button>
+</header>

@@ -1,0 +1,61 @@
+---
+layout: base
+title: Mystic Musings — Weekly Tarot, Numerology & Guidance
+description: Weekly tarot readings for every Mulank, numerology guides, articles and gentle wisdom from Tapashree Mutsuddy at Mysticq Minds Alchemyy.
+---
+<section class="insights-hero">
+  <p class="eyebrow">✦ The MyMA Blog ✦</p>
+  <h1>{{ site.musings_name }}</h1>
+  <p class="insights-sub">Weekly tarot for every Mulank, numerology guides and gentle wisdom for the path ahead.</p>
+</section>
+
+{% assign weekly = site.posts | where: "category", "Weekly Tarot" %}
+<section class="insights-feature">
+  {% if weekly.size > 0 %}{% assign w = weekly.first %}
+  <a class="feature-card feature-weekly" href="{{ '/weekly-tarot/' | relative_url }}">
+    <span class="feature-num" aria-hidden="true">✦</span>
+    <span class="feature-text">
+      <span class="feature-kicker">This week's tarot</span>
+      <span class="feature-title">{{ w.title }}</span>
+      <span class="feature-desc">Find the card and message for your Mulank this week.</span>
+    </span>
+    <span class="feature-go" aria-hidden="true">→</span>
+  </a>
+  {% endif %}
+  <a class="feature-card" href="{{ '/mulank-calculator/' | relative_url }}">
+    <span class="feature-num" aria-hidden="true">1–9</span>
+    <span class="feature-text">
+      <span class="feature-kicker">Free tool</span>
+      <span class="feature-title">What is your Mulank?</span>
+      <span class="feature-desc">Enter your date of birth and discover your root number, its ruling planet and what it says about you.</span>
+    </span>
+    <span class="feature-go" aria-hidden="true">→</span>
+  </a>
+</section>
+
+{% assign cats = site.posts | map: 'category' | uniq | compact %}
+<section class="insights-list">
+  {% if cats.size > 1 %}
+  <div class="filter-bar" role="group" aria-label="Filter by topic">
+    <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All</button>
+    {% for c in cats %}<button type="button" class="filter-chip" data-filter="{{ c | slugify }}" aria-pressed="false">{{ c }}</button>{% endfor %}
+  </div>
+  {% endif %}
+
+  {% if site.posts.size > 0 %}
+  <ul class="post-list" id="postList">
+    {% for post in site.posts %}
+    <li class="post-item" data-cat="{{ post.category | slugify }}">
+      <a href="{{ post.url | relative_url }}">
+        <span class="post-item-meta">{{ post.category | default: 'Journal' }} · {{ post.date | date: "%-d %b %Y" }}</span>
+        <span class="post-item-title">{{ post.title }}</span>
+        <span class="post-item-excerpt">{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 170 }}</span>
+        <span class="post-item-more">Read →</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty-note">The first musings are on their way. Follow along on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a> in the meantime.</p>
+  {% endif %}
+</section>

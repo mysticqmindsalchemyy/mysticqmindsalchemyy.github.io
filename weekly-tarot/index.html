@@ -1,0 +1,55 @@
+---
+layout: base
+title: Weekly Tarot Reading for Every Mulank
+description: This week's tarot guidance for every Mulank (1–9) from Tapashree Mutsuddy — find your card, message and affirmation for the week ahead.
+---
+{% assign weekly = site.posts | where: "category", "Weekly Tarot" %}
+{% if weekly.size > 0 %}{% assign w = weekly.first %}
+<article class="post post-tarot">
+  <header class="post-header">
+    <p class="post-crumb">✦ This week's tarot ✦</p>
+    <h1 class="post-title">{{ w.title }}</h1>
+    <p class="post-meta">Published <time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%-d %B %Y" }}</time> · by Tapashree Mutsuddy</p>
+  </header>
+
+  <nav class="mulank-jump" id="mulankJump" aria-label="Jump to your Mulank" hidden>
+    <p class="mulank-jump-label">Jump to your Mulank</p>
+    <div class="mulank-jump-chips" id="mulankJumpChips"></div>
+    <p class="mulank-jump-help">Not sure of your Mulank? <a href="{{ '/mulank-calculator/' | relative_url }}">Calculate it in 5 seconds →</a></p>
+  </nav>
+
+  <div class="post-body">
+    {{ w.content }}
+  </div>
+
+  <aside class="post-cta">
+    <p class="post-cta-label">✦ Go deeper ✦</p>
+    <p class="post-cta-text">A weekly reading shows the general energy. A personal session looks at <em>your</em> numbers, your question and your path.</p>
+    <a href="{{ '/#book' | relative_url }}" class="btn-primary">Book a Personal Session</a>
+    <p class="post-cta-follow">Share this week's reading: <a href="{{ w.url | relative_url }}">permanent link</a> · Daily energy on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a></p>
+  </aside>
+
+  {% if weekly.size > 1 %}
+  <section class="past-weeks">
+    <h2>Past weekly readings</h2>
+    <ul class="post-list">
+      {% for p in weekly offset: 1 limit: 12 %}
+      <li class="post-item"><a href="{{ p.url | relative_url }}">
+        <span class="post-item-meta">Weekly Tarot · {{ p.date | date: "%-d %b %Y" }}</span>
+        <span class="post-item-title">{{ p.title }}</span>
+      </a></li>
+      {% endfor %}
+    </ul>
+    <p><a href="{{ '/musings/' | relative_url }}">See all {{ site.musings_name }} →</a></p>
+  </section>
+  {% endif %}
+</article>
+{% else %}
+<section class="insights-hero">
+  <p class="eyebrow">✦ Weekly Tarot ✦</p>
+  <h1>Weekly Tarot for Every Mulank</h1>
+  <p class="insights-sub">The first weekly reading is coming very soon. Meanwhile, find your Mulank so you're ready.</p>
+  <p style="margin-top:1.5rem"><a class="btn-primary" href="{{ '/mulank-calculator/' | relative_url }}">Find my Mulank</a></p>
+  <p style="margin:1rem 0 4rem">Weekly energy is also shared on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>.</p>
+</section>
+{% endif %}

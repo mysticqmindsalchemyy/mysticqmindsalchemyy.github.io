@@ -1,0 +1,39 @@
+---
+layout: base
+---
+{% assign is_tarot = false %}{% if page.category == 'Weekly Tarot' %}{% assign is_tarot = true %}{% endif %}
+<article class="post{% if is_tarot %} post-tarot{% endif %}">
+  <header class="post-header">
+    <p class="post-crumb">{% if is_tarot %}<a href="{{ '/weekly-tarot/' | relative_url }}">Weekly Tarot</a>{% else %}<a href="{{ '/musings/' | relative_url }}">{{ site.musings_name }}</a>{% endif %} {% unless is_tarot %} <span aria-hidden="true">›</span> {{ page.category | default: 'Journal' }}{% endunless %}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.week %}<p class="post-week">✦ {{ page.week }} ✦</p>{% endif %}
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      · by {{ page.author | default: 'Tapashree Mutsuddy' }}
+    </p>
+  </header>
+
+  {% if is_tarot %}
+  <nav class="mulank-jump" id="mulankJump" aria-label="Jump to your Mulank" hidden>
+    <p class="mulank-jump-label">Jump to your Mulank</p>
+    <div class="mulank-jump-chips" id="mulankJumpChips"></div>
+    <p class="mulank-jump-help">Not sure of your Mulank? <a href="{{ '/mulank-calculator/' | relative_url }}">Calculate it in 5 seconds →</a></p>
+  </nav>
+  {% endif %}
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <aside class="post-cta">
+    <p class="post-cta-label">✦ Go deeper ✦</p>
+    <p class="post-cta-text">A weekly reading shows the general energy. A personal session looks at <em>your</em> numbers, your question and your path.</p>
+    <a href="{{ '/#book' | relative_url }}" class="btn-primary">Book a Personal Session</a>
+    <p class="post-cta-follow">Daily energy updates on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a></p>
+  </aside>
+
+  <nav class="post-nav" aria-label="More posts">
+    {% if page.previous %}<a class="post-nav-prev" href="{{ page.previous.url | relative_url }}"><span>← Previous</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a class="post-nav-next" href="{{ page.next.url | relative_url }}"><span>Next →</span>{{ page.next.title }}</a>{% endif %}
+  </nav>
+</article>
