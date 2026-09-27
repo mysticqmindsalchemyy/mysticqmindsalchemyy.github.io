@@ -129,45 +129,89 @@
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter') show(); });
   }
 
-  /* ── Weekly tarot: "jump to your Mulank" chips ── */
+  /* ── Weekly tarot: "jump to your Mulank" chips + pinned mini bar ── */
   var jump = document.getElementById('mulankJump');
   if (jump) {
     var chipWrap = document.getElementById('mulankJumpChips');
+    var mini = document.getElementById('mulankMini');
+    var miniWrap = document.getElementById('mulankMiniChips');
     var saved = store.get('myma-mulank');
-    var found = 0;
+    var cards = [];
+
+    function makeChip(n, small) {
+      var a = document.createElement('a');
+      a.href = '#mulank-' + n;
+      a.className = (small ? 'mini-chip' : 'jump-chip') + (saved === n ? ' is-yours' : '');
+      a.textContent = n;
+      a.setAttribute('aria-label', 'Mulank ' + n);
+      a.setAttribute('data-n', n);
+      a.addEventListener('click', function () { store.set('myma-mulank', n); });
+      return a;
+    }
+
     document.querySelectorAll('.post-body h2').forEach(function (h) {
       var m = h.textContent.match(/mulank\s*([1-9])/i);
       if (!m) return;
       var n = m[1];
-      found++;
       var section = document.createElement('section');
       section.className = 'mulank-card';
       section.id = 'mulank-' + n;
+      section.setAttribute('data-n', n);
       h.parentNode.insertBefore(section, h);
-      // move the heading and everything up to the next h2 into the card
       var node = h;
       while (node && !(node !== h && node.tagName === 'H2')) {
         var next = node.nextSibling;
         section.appendChild(node);
         node = next;
       }
-      if (saved === n) section.classList.add('is-yours');
-      var a = document.createElement('a');
-      a.href = '#mulank-' + n;
-      a.className = 'jump-chip' + (saved === n ? ' is-yours' : '');
-      a.textContent = n;
-      a.setAttribute('aria-label', 'Mulank ' + n);
-      a.addEventListener('click', function () { store.set('myma-mulank', n); });
-      chipWrap.appendChild(a);
+      if (saved === n) {
+        section.classList.add('is-yours');
+        var tag = document.createElement('span');
+        tag.className = 'yours-tag';
+        tag.textContent = 'Your Mulank';
+        h.appendChild(tag);
+      }
+      chipWrap.appendChild(makeChip(n, false));
+      if (miniWrap) miniWrap.appendChild(makeChip(n, true));
+      cards.push(section);
     });
-    if (found) jump.hidden = false;
-    if (saved && found) {
-      var yours = document.querySelector('.mulank-card.is-yours h2');
-      if (yours) {
-        var note = document.createElement('span');
-        note.className = 'yours-tag';
-        note.textContent = 'Your Mulank';
-        yours.appendChild(note);
+
+    if (cards.length) {
+      jump.hidden = false;
+
+      if (mini && 'IntersectionObserver' in window) {
+        // Show the slim number bar once the big 1–9 buttons scroll out of view,
+        // and hide it again after the last Mulank card.
+        var jumpVisible = true, pastEnd = false;
+        var navH = function () { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 80; };
+        function updateMini() {
+          var show = !jumpVisible && !pastEnd;
+          mini.hidden = false;
+          mini.classList.toggle('show', show);
+          document.body.classList.toggle('mini-on', show);
+        }
+        new IntersectionObserver(function (e) {
+          jumpVisible = e[0].isIntersecting || e[0].boundingClientRect.top > 0;
+          updateMini();
+        }, { rootMargin: '-' + navH() + 'px 0px 0px 0px' }).observe(jump);
+
+        new IntersectionObserver(function (e) {
+          var last = e[0];
+          pastEnd = !last.isIntersecting && last.boundingClientRect.bottom < navH();
+          updateMini();
+        }).observe(cards[cards.length - 1]);
+
+        // Highlight the Mulank currently being read
+        var current = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            var n = en.target.getAttribute('data-n');
+            miniWrap.querySelectorAll('.mini-chip').forEach(function (c) {
+              c.classList.toggle('is-current', c.getAttribute('data-n') === n);
+            });
+          });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        cards.forEach(function (c) { current.observe(c); });
       }
     }
   }

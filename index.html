@@ -1916,6 +1916,12 @@ footer {
 .form-status.error   { color: var(--rust); }
 .form-submit[disabled] { opacity: 0.7; cursor: wait; }
 
+/* ─── Booking section: keep the ॥ ॐ ॥ ornament clear of the heading on smaller screens ─── */
+@media (max-width: 900px) {
+  #book { padding-top: 5rem; }
+  #book::before { top: 1.6rem; }
+}
+
 /* ─── RESPECT "REDUCE MOTION" SETTINGS ─── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -2880,6 +2886,24 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
   if (!prefersReducedMotion) timer = setInterval(tick, 6000);
 })();
 
+// ─── Arriving from another page (e.g. /#book): land exactly on that section ───
+// The homepage loads its latest posts a moment after opening, which pushes the
+// sections below them down. Re-align once everything has loaded, unless the
+// visitor has already started scrolling themselves.
+(function () {
+  const hash = location.hash;
+  if (!hash || hash.length < 2) return;
+  let target;
+  try { target = document.querySelector(hash); } catch (e) { return; }
+  if (!target) return;
+  let userMoved = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(ev =>
+    window.addEventListener(ev, () => { userMoved = true; }, { once: true, passive: true }));
+  const align = () => { if (!userMoved) target.scrollIntoView({ behavior: 'instant', block: 'start' }); };
+  window.addEventListener('load', () => setTimeout(align, 50));
+  document.addEventListener('musings:rendered', () => setTimeout(align, 30));
+})();
+
 // ─── Mystic Musings: this week's tarot + newest posts ───
 (function () {
   const list = document.getElementById('journalList');
@@ -2905,7 +2929,8 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
         </a></li>`).join('');
       list.hidden = false;
     })
-    .catch(() => {});
+    .catch(() => {})
+    .finally(() => document.dispatchEvent(new Event('musings:rendered')));
 })();
 
 // ─── About dropdown (click/tap + keyboard; hover handled in CSS) ───

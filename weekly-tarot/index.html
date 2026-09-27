@@ -17,6 +17,10 @@ description: This week's tarot guidance for every Mulank (1–9) from Tapashree 
     <div class="mulank-jump-chips" id="mulankJumpChips"></div>
     <p class="mulank-jump-help">Not sure of your Mulank? <a href="{{ '/mulank-calculator/' | relative_url }}">Calculate it in 5 seconds →</a></p>
   </nav>
+  <nav class="mulank-mini" id="mulankMini" aria-label="Mulank numbers" hidden>
+    <span class="mulank-mini-label">Mulank</span>
+    <div class="mulank-mini-chips" id="mulankMiniChips"></div>
+  </nav>
 
   <div class="post-body">
     {{ w.content }}
@@ -25,7 +29,7 @@ description: This week's tarot guidance for every Mulank (1–9) from Tapashree 
   <aside class="post-cta">
     <p class="post-cta-label">✦ Go deeper ✦</p>
     <p class="post-cta-text">A weekly reading shows the general energy. A personal session looks at <em>your</em> numbers, your question and your path.</p>
-    <a href="{{ '/#book' | relative_url }}" class="btn-primary">Book a Personal Session</a>
+    <a href="{{ '/#book' | relative_url }}" class="btn-primary">Book a 1:1 Session</a>
     <p class="post-cta-follow">Share this week's reading: <a href="{{ w.url | relative_url }}">permanent link</a> · Daily energy on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a></p>
   </aside>
 
