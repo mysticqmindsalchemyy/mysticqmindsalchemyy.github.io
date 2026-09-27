@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mysticqmindsalchemyy.github.io/sitemap.xml
+Sitemap: https://www.mystic-mind-alchemy.com/sitemap.xml

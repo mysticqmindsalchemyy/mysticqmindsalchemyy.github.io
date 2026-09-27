@@ -1,0 +1,19 @@
+---
+layout: null
+---
+{% assign weekly = site.posts | where: "category", "Weekly Tarot" %}{
+  "weekly": {% if weekly.size > 0 %}{% assign w = weekly.first %}{
+    "title": {{ w.title | jsonify }},
+    "url": {{ '/weekly-tarot/' | relative_url | jsonify }},
+    "date": {{ w.date | date: "%-d %b %Y" | jsonify }}
+  }{% else %}null{% endif %},
+  "latest": [{% for post in site.posts limit: 3 %}
+    {
+      "title": {{ post.title | jsonify }},
+      "url": {{ post.url | relative_url | jsonify }},
+      "date": {{ post.date | date: "%-d %b %Y" | jsonify }},
+      "category": {{ post.category | default: "Journal" | jsonify }},
+      "excerpt": {{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 140 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]
+}

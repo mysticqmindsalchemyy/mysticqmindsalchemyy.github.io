@@ -1,0 +1,32 @@
+# ─── Site settings (GitHub Pages reads this file automatically) ───
+title: Mysticq Minds Alchemyy
+tagline: Decode · Align · Transform
+musings_name: Mystic Musings
+description: Numerology, Tarot guidance, Life Transition Coaching and Reiki healing with Tapashree Mutsuddy — sessions online worldwide.
+url: https://www.mystic-mind-alchemy.com
+instagram: https://www.instagram.com/mysticqmindsalchemyy/
+facebook: https://www.facebook.com/profile.php?id=61588530028922
+timezone: Asia/Kolkata
+
+# Show posts even if their date is later in the week
+future: true
+
+markdown: kramdown
+kramdown:
+  auto_ids: true
+
+# Every post lives at /musings/<name-of-file>/
+permalink: /musings/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - HOW-TO-POST.md
+  - "*.gs"
+  - _templates
