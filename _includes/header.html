@@ -18,11 +18,10 @@
       </li>
       <li><a href="{{ '/#services' | relative_url }}">Services</a></li>
       <li class="has-sub{% if on_weekly or on_monthly %} active-group{% endif %}">
-        <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="subReadings">Readings <span aria-hidden="true">▾</span></button>
+        <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="subReadings">Tarot Reading Insights <span aria-hidden="true">▾</span></button>
         <ul class="sub-menu" id="subReadings">
           <li><a href="{{ '/weekly-tarot/' | relative_url }}"{% if on_weekly %} class="active"{% endif %}>Weekly Tarot</a></li>
           <li><a href="{{ '/monthly-reading/' | relative_url }}"{% if on_monthly %} class="active"{% endif %}>Monthly Reading</a></li>
-          <li><a href="{{ '/mulank-calculator/' | relative_url }}">Find Your Mulank</a></li>
         </ul>
       </li>
       <li><a href="{{ '/musings/' | relative_url }}"{% if on_musings %} class="active"{% endif %}>{{ site.musings_name }}</a></li>
