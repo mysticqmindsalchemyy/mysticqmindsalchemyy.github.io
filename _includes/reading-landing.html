@@ -1,0 +1,61 @@
+{% comment %}
+  Landing page for a reading series: always shows the newest reading.
+  Params: category, unit ("week"/"month"), landing, series_name, empty_title
+{% endcomment %}
+{% assign items = site.posts | where: "category", include.category %}
+{% if items.size > 0 %}{% assign w = items.first %}
+{% if include.unit == "month" %}
+  {% assign y = w.date | date: "%Y" | plus: 0 %}{% assign m = w.date | date: "%m" | plus: 1 %}
+  {% if m > 12 %}{% assign m = 1 %}{% assign y = y | plus: 1 %}{% endif %}
+  {% assign mm = m | prepend: "0" | slice: -2, 2 %}
+  {% capture end_str %}{{ y }}-{{ mm }}-01{% endcapture %}
+  {% assign period_end = end_str | date: "%s" %}
+{% else %}
+  {% assign period_end = w.date | date: "%s" | plus: 604800 %}
+{% endif %}
+<article class="post post-tarot{% if include.unit == 'month' %} post-monthly{% endif %}" data-week-end="{{ period_end }}">
+  <header class="post-header">
+    <p class="post-crumb" data-stale-text="✦ Latest {{ include.series_name | downcase }} ✦">✦ This {{ include.unit }}'s {{ include.series_name | downcase | remove: 'weekly ' | remove: 'monthly ' }} ✦</p>
+    <p class="stale-note" hidden>✦ This {{ include.unit }}'s new reading is on its way. Meanwhile, here is the most recent reading ({{ w.title | split: ': ' | last }}).</p>
+    <h1 class="post-title">{{ w.title }}</h1>
+    <p class="post-meta">Published <time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%-d %B %Y" }}</time> · by Tapashree Mutsuddy</p>
+  </header>
+
+  {% include period-picker.html current_url=w.url category=include.category landing=include.landing unit=include.unit %}
+  {% include mulank-jump.html %}
+
+  <div class="post-body">
+    {{ w.content }}
+  </div>
+
+  <aside class="post-cta">
+    <p class="post-cta-label">✦ Go deeper ✦</p>
+    <p class="post-cta-text">This reading shows the energy for everyone who shares your Mulank. A personal session looks at <em>your</em> numbers, your question and your path.</p>
+    <a href="{{ '/#book' | relative_url }}" class="btn-primary">Book a One-to-One Session</a>
+    <p class="post-cta-follow">Share this {{ include.unit }}'s reading: <a href="{{ w.url | relative_url }}">permanent link</a> · Daily energy on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a></p>
+  </aside>
+
+  {% if items.size > 1 %}
+  <section class="past-weeks">
+    <h2>All past {{ include.unit }}ly readings</h2>
+    <ul class="post-list">
+      {% for p in items offset: 1 limit: 12 %}
+      <li class="post-item"><a href="{{ p.url | relative_url }}">
+        <span class="post-item-meta">{{ include.series_name }} · {{ p.date | date: "%-d %b %Y" }}</span>
+        <span class="post-item-title">{{ p.title }}</span>
+      </a></li>
+      {% endfor %}
+    </ul>
+    <p><a href="{{ '/musings/' | relative_url }}">See all {{ site.musings_name }} →</a></p>
+  </section>
+  {% endif %}
+</article>
+{% else %}
+<section class="insights-hero">
+  <p class="eyebrow">✦ {{ include.series_name }} ✦</p>
+  <h1>{{ include.empty_title }}</h1>
+  <p class="insights-sub">The first reading is coming very soon. Meanwhile, find your Mulank so you're ready.</p>
+  <p style="margin-top:1.5rem"><a class="btn-primary" href="{{ '/mulank-calculator/' | relative_url }}">Find my Mulank</a></p>
+  <p style="margin:1rem 0 4rem">Daily energy is also shared on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>.</p>
+</section>
+{% endif %}

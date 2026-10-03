@@ -8,6 +8,11 @@ layout: null
     "date": {{ w.date | date: "%-d %b %Y" | jsonify }},
     "week_end": {{ w.date | date: '%s' | plus: 604800 }}
   }{% else %}null{% endif %},
+  "monthly": {% assign monthly = site.posts | where: "category", "Monthly Reading" %}{% if monthly.size > 0 %}{% assign mo = monthly.first %}{% assign y = mo.date | date: "%Y" | plus: 0 %}{% assign m = mo.date | date: "%m" | plus: 1 %}{% if m > 12 %}{% assign m = 1 %}{% assign y = y | plus: 1 %}{% endif %}{% assign mm = m | prepend: "0" | slice: -2, 2 %}{% capture end_str %}{{ y }}-{{ mm }}-01{% endcapture %}{
+    "title": {{ mo.title | jsonify }},
+    "url": {{ '/monthly-reading/' | relative_url | jsonify }},
+    "month_end": {{ end_str | date: '%s' }}
+  }{% else %}null{% endif %},
   "latest": [{% for post in site.posts limit: 3 %}
     {
       "title": {{ post.title | jsonify }},

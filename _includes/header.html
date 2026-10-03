@@ -1,5 +1,6 @@
 {% assign on_musings = false %}{% if page.url contains '/musings/' or page.url contains 'mulank' %}{% assign on_musings = true %}{% endif %}
 {% assign on_weekly = false %}{% if page.url contains '/weekly-tarot/' or page.category == 'Weekly Tarot' %}{% assign on_weekly = true %}{% assign on_musings = false %}{% endif %}
+{% assign on_monthly = false %}{% if page.url contains '/monthly-reading/' or page.category == 'Monthly Reading' %}{% assign on_monthly = true %}{% assign on_musings = false %}{% endif %}
 <header class="site-nav">
   <a href="{{ '/' | relative_url }}" class="site-nav-brand" aria-label="{{ site.title }} home">
     <img src="{{ '/assets/img/logo.webp' | relative_url }}" alt="{{ site.title }} logo" width="96" height="64">
@@ -16,7 +17,14 @@
         </ul>
       </li>
       <li><a href="{{ '/#services' | relative_url }}">Services</a></li>
-      <li><a href="{{ '/weekly-tarot/' | relative_url }}"{% if on_weekly %} class="active"{% endif %}>Weekly Tarot</a></li>
+      <li class="has-sub{% if on_weekly or on_monthly %} active-group{% endif %}">
+        <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="subReadings">Readings <span aria-hidden="true">▾</span></button>
+        <ul class="sub-menu" id="subReadings">
+          <li><a href="{{ '/weekly-tarot/' | relative_url }}"{% if on_weekly %} class="active"{% endif %}>Weekly Tarot</a></li>
+          <li><a href="{{ '/monthly-reading/' | relative_url }}"{% if on_monthly %} class="active"{% endif %}>Monthly Reading</a></li>
+          <li><a href="{{ '/mulank-calculator/' | relative_url }}">Find Your Mulank</a></li>
+        </ul>
+      </li>
       <li><a href="{{ '/musings/' | relative_url }}"{% if on_musings %} class="active"{% endif %}>{{ site.musings_name }}</a></li>
       <li><a href="{{ '/#book' | relative_url }}" class="site-nav-book">Book a Session</a></li>
     </ul>

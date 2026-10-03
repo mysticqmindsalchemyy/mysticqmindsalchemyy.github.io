@@ -1818,7 +1818,8 @@ footer {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .journal-weekly[hidden] { display: none; }
-.journal-weekly + .journal-tool { margin-top: 1rem; }
+.journal-weekly + .journal-tool, .journal-weekly + .journal-weekly { margin-top: 1rem; }
+.journal-monthly { background: linear-gradient(135deg, #3b2a55, #24183a); }
 .journal-weekly-star { font-size: 2rem; color: var(--gold-bright); width: 2.6rem; text-align: center; }
 .journal-tool-num { font-family: 'Cinzel Decorative', serif; font-size: 2rem; color: var(--gold-bright); }
 .journal-tool-text { display: flex; flex-direction: column; }
@@ -1957,7 +1958,14 @@ footer {
       </ul>
     </li>
     <li><a href="#services">Services</a></li>
-    <li><a href="/weekly-tarot/">Weekly Tarot</a></li>
+    <li class="has-sub">
+      <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="subReadings">Readings <span aria-hidden="true">▾</span></button>
+      <ul class="sub-menu" id="subReadings">
+        <li><a href="/weekly-tarot/">Weekly Tarot</a></li>
+        <li><a href="/monthly-reading/">Monthly Reading</a></li>
+        <li><a href="/mulank-calculator/">Find Your Mulank</a></li>
+      </ul>
+    </li>
     <li><a href="/musings/">Mystic Musings</a></li>
     <li><a href="#book" class="nav-book">Book A Session</a></li>
   </ul>
@@ -1984,6 +1992,7 @@ footer {
       <li><a href="#founder" class="drawer-link">Meet The Founder</a></li>
       <li><a href="#process" class="drawer-link">How It Works</a></li>
       <li><a href="/weekly-tarot/" class="drawer-link">Weekly Tarot</a></li>
+      <li><a href="/monthly-reading/" class="drawer-link">Monthly Reading</a></li>
       <li><a href="/musings/" class="drawer-link">Mystic Musings</a></li>
       <li><a href="#testimonials" class="drawer-link">Testimonials</a></li>
       <li><a href="#book" class="drawer-link">Book A Session</a></li>
@@ -2377,7 +2386,7 @@ footer {
 <section id="journal" aria-labelledby="journal-title">
   <span class="section-label reveal">✦ Mystic Musings</span>
   <h2 class="section-title reveal" id="journal-title">Weekly Tarot &amp; Wisdom</h2>
-  <p class="section-subtitle reveal">Tarot for every Mulank, numerology guides and more</p>
+  <p class="section-subtitle reveal">Weekly and monthly tarot for every Mulank, numerology guides and more</p>
 
   <a class="journal-weekly" id="journalWeekly" href="/weekly-tarot/" hidden>
     <span class="journal-weekly-star" aria-hidden="true">✦</span>
@@ -2385,6 +2394,16 @@ footer {
       <span class="journal-tool-kicker" id="journalWeeklyKicker">This week's tarot</span>
       <span class="journal-tool-title" id="journalWeeklyTitle">Weekly Tarot for Every Mulank</span>
       <span class="journal-tool-desc">Find your card, message and affirmation for the week ahead.</span>
+    </span>
+    <span class="journal-tool-go" aria-hidden="true">→</span>
+  </a>
+
+  <a class="journal-weekly journal-monthly" id="journalMonthly" href="/monthly-reading/" hidden>
+    <span class="journal-weekly-star" aria-hidden="true">☾</span>
+    <span class="journal-tool-text">
+      <span class="journal-tool-kicker" id="journalMonthlyKicker">This month's reading</span>
+      <span class="journal-tool-title" id="journalMonthlyTitle">Monthly Tarot Forecast for Every Mulank</span>
+      <span class="journal-tool-desc">Overall energy, health, relationships, finance and career, and an angel message.</span>
     </span>
     <span class="journal-tool-go" aria-hidden="true">→</span>
   </a>
@@ -2570,6 +2589,7 @@ footer {
     <li><a href="#founder">Meet The Founder</a></li>
     <li><a href="#process">How It Works</a></li>
     <li><a href="/weekly-tarot/">Weekly Tarot</a></li>
+    <li><a href="/monthly-reading/">Monthly Reading</a></li>
     <li><a href="/musings/">Mystic Musings</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#book">Book A Session</a></li>
@@ -2919,6 +2939,13 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
           document.getElementById('journalWeeklyKicker').textContent = 'Latest tarot';
         }
         banner.hidden = false;
+      }
+      if (data && data.monthly) {
+        document.getElementById('journalMonthlyTitle').textContent = data.monthly.title;
+        if (data.monthly.month_end && Date.now() / 1000 >= data.monthly.month_end) {
+          document.getElementById('journalMonthlyKicker').textContent = 'Latest monthly reading';
+        }
+        document.getElementById('journalMonthly').hidden = false;
       }
       const posts = (data && data.latest) || [];
       if (!posts.length) return;

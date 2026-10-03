@@ -1,0 +1,47 @@
+{% comment %}
+  Selector for a series of readings (weekly or monthly).
+  Params: current_url, category ("Weekly Tarot" / "Monthly Reading"),
+          landing ("/weekly-tarot/" / "/monthly-reading/"), unit ("week" / "month").
+  Labels come from the post title after the colon, e.g. "4–10 Oct 2026" or "October 2026".
+{% endcomment %}
+{% assign items = site.posts | where: "category", include.category %}
+{% assign unit = include.unit | default: "week" %}
+{% assign cur_index = 0 %}
+{% for w in items %}{% if w.url == include.current_url %}{% assign cur_index = forloop.index0 %}{% endif %}{% endfor %}
+{% assign newer_index = cur_index | minus: 1 %}
+{% assign older_index = cur_index | plus: 1 %}
+{% if items.size > 0 %}
+{% assign newest = items.first %}
+{% if unit == "month" %}
+  {% assign y = newest.date | date: "%Y" | plus: 0 %}{% assign m = newest.date | date: "%m" | plus: 1 %}
+  {% if m > 12 %}{% assign m = 1 %}{% assign y = y | plus: 1 %}{% endif %}
+  {% assign mm = m | prepend: "0" | slice: -2, 2 %}
+  {% capture end_str %}{{ y }}-{{ mm }}-01{% endcapture %}
+  {% assign period_end = end_str | date: "%s" %}
+{% else %}
+  {% assign period_end = newest.date | date: "%s" | plus: 604800 %}
+{% endif %}
+<div class="week-picker" role="navigation" aria-label="Choose a {{ unit }}" data-week-end="{{ period_end }}">
+  {% if older_index < items.size %}
+    <a class="week-step week-older" href="{{ items[older_index].url | relative_url }}">← <span>Previous {{ unit }}</span></a>
+  {% else %}<span class="week-step week-step-off" aria-hidden="true">← <span>Previous {{ unit }}</span></span>{% endif %}
+
+  <label class="week-select-wrap">
+    <span class="sr-only">Choose a {{ unit }}</span>
+    <select class="week-select" id="weekSelect">
+      {% for w in items %}
+        {% assign label = w.title | split: ': ' | last %}
+        <option value="{% if forloop.first %}{{ include.landing | relative_url }}{% else %}{{ w.url | relative_url }}{% endif %}"{% if forloop.index0 == cur_index %} selected{% endif %}{% if forloop.first %} data-stale-text="Latest: {{ label }}"{% endif %}>{% if forloop.first %}This {{ unit }}: {% endif %}{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  {% if cur_index > 0 %}
+    {% if newer_index == 0 %}{% assign newer_url = include.landing %}{% else %}{% assign newer_url = items[newer_index].url %}{% endif %}
+    <a class="week-step week-newer" href="{{ newer_url | relative_url }}"><span>Next {{ unit }}</span> →</a>
+  {% else %}<span class="week-step week-step-off week-soon">Next reading coming soon</span>{% endif %}
+</div>
+{% if cur_index > 0 %}
+<p class="past-note">You're viewing a past reading. <a href="{{ include.landing | relative_url }}">See this {{ unit }}'s reading →</a></p>
+{% endif %}
+{% endif %}

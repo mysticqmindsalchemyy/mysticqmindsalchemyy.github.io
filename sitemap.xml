@@ -6,6 +6,7 @@ layout: null
   <url><loc>{{ '/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
   <url><loc>{{ '/musings/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
   <url><loc>{{ '/weekly-tarot/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
+  <url><loc>{{ '/monthly-reading/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
   <url><loc>{{ '/mulank-calculator/' | absolute_url }}</loc></url>
   {% for post in site.posts %}{% unless post.permalink == '/mulank-calculator/' %}<url><loc>{{ post.url | absolute_url }}</loc><lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod></url>
   {% endunless %}{% endfor %}
