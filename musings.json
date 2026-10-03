@@ -5,7 +5,8 @@ layout: null
   "weekly": {% if weekly.size > 0 %}{% assign w = weekly.first %}{
     "title": {{ w.title | jsonify }},
     "url": {{ '/weekly-tarot/' | relative_url | jsonify }},
-    "date": {{ w.date | date: "%-d %b %Y" | jsonify }}
+    "date": {{ w.date | date: "%-d %b %Y" | jsonify }},
+    "week_end": {{ w.date | date: '%s' | plus: 604800 }}
   }{% else %}null{% endif %},
   "latest": [{% for post in site.posts limit: 3 %}
     {

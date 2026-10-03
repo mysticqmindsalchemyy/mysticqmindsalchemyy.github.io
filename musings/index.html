@@ -12,10 +12,10 @@ description: Weekly tarot readings for every Mulank, numerology guides, articles
 {% assign weekly = site.posts | where: "category", "Weekly Tarot" %}
 <section class="insights-feature">
   {% if weekly.size > 0 %}{% assign w = weekly.first %}
-  <a class="feature-card feature-weekly" href="{{ '/weekly-tarot/' | relative_url }}">
+  <a class="feature-card feature-weekly" href="{{ '/weekly-tarot/' | relative_url }}" data-week-end="{{ w.date | date: '%s' | plus: 604800 }}">
     <span class="feature-num" aria-hidden="true">✦</span>
     <span class="feature-text">
-      <span class="feature-kicker">This week's tarot</span>
+      <span class="feature-kicker" data-stale-text="Latest tarot">This week's tarot</span>
       <span class="feature-title">{{ w.title }}</span>
       <span class="feature-desc">Find the card and message for your Mulank this week.</span>
     </span>

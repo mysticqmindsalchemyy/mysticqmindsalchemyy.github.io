@@ -13,6 +13,8 @@ layout: base
     </p>
   </header>
 
+  {% if is_tarot %}{% include week-picker.html current_url=page.url %}{% endif %}
+
   {% if is_tarot %}
   <nav class="mulank-jump" id="mulankJump" aria-label="Jump to your Mulank" hidden>
     <p class="mulank-jump-label">Jump to your Mulank</p>
@@ -36,8 +38,10 @@ layout: base
     <p class="post-cta-follow">Daily energy updates on <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a></p>
   </aside>
 
+  {% unless is_tarot %}
   <nav class="post-nav" aria-label="More posts">
     {% if page.previous %}<a class="post-nav-prev" href="{{ page.previous.url | relative_url }}"><span>← Previous</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
     {% if page.next %}<a class="post-nav-next" href="{{ page.next.url | relative_url }}"><span>Next →</span>{{ page.next.title }}</a>{% endif %}
   </nav>
+  {% endunless %}
 </article>

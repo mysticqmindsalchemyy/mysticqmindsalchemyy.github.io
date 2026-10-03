@@ -2381,7 +2381,7 @@ footer {
   <a class="journal-weekly" id="journalWeekly" href="/weekly-tarot/" hidden>
     <span class="journal-weekly-star" aria-hidden="true">✦</span>
     <span class="journal-tool-text">
-      <span class="journal-tool-kicker">This week's tarot</span>
+      <span class="journal-tool-kicker" id="journalWeeklyKicker">This week's tarot</span>
       <span class="journal-tool-title" id="journalWeeklyTitle">Weekly Tarot for Every Mulank</span>
       <span class="journal-tool-desc">Find your card, message and affirmation for the week ahead.</span>
     </span>
@@ -2914,6 +2914,9 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
       if (data && data.weekly) {
         const banner = document.getElementById('journalWeekly');
         document.getElementById('journalWeeklyTitle').textContent = data.weekly.title;
+        if (data.weekly.week_end && Date.now() / 1000 >= data.weekly.week_end) {
+          document.getElementById('journalWeeklyKicker').textContent = 'Latest tarot';
+        }
         banner.hidden = false;
       }
       const posts = (data && data.latest) || [];

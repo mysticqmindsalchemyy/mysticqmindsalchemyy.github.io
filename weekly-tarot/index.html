@@ -5,12 +5,15 @@ description: This week's tarot guidance for every Mulank (1–9) from Tapashree 
 ---
 {% assign weekly = site.posts | where: "category", "Weekly Tarot" %}
 {% if weekly.size > 0 %}{% assign w = weekly.first %}
-<article class="post post-tarot">
+<article class="post post-tarot" data-week-end="{{ w.date | date: '%s' | plus: 604800 }}">
   <header class="post-header">
-    <p class="post-crumb">✦ This week's tarot ✦</p>
+    <p class="post-crumb" data-stale-text="✦ Latest tarot reading ✦">✦ This week's tarot ✦</p>
+    <p class="stale-note" hidden>✦ This week's new reading is on its way. Meanwhile, here is the most recent reading ({{ w.title | split: ': ' | last }}).</p>
     <h1 class="post-title">{{ w.title }}</h1>
     <p class="post-meta">Published <time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%-d %B %Y" }}</time> · by Tapashree Mutsuddy</p>
   </header>
+
+  {% include week-picker.html current_url=w.url %}
 
   <nav class="mulank-jump" id="mulankJump" aria-label="Jump to your Mulank" hidden>
     <p class="mulank-jump-label">Jump to your Mulank</p>
@@ -35,7 +38,7 @@ description: This week's tarot guidance for every Mulank (1–9) from Tapashree 
 
   {% if weekly.size > 1 %}
   <section class="past-weeks">
-    <h2>Past weekly readings</h2>
+    <h2>All past weekly readings</h2>
     <ul class="post-list">
       {% for p in weekly offset: 1 limit: 12 %}
       <li class="post-item"><a href="{{ p.url | relative_url }}">

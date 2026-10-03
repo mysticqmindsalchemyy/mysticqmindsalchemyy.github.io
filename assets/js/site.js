@@ -44,6 +44,23 @@
     });
   });
 
+  /* ── Weekly tarot: if the newest reading's week has ended, say "Latest" instead of "This week" ── */
+  document.querySelectorAll('[data-week-end]').forEach(function (box) {
+    var end = Number(box.getAttribute('data-week-end'));
+    if (!end || Date.now() / 1000 < end) return;
+    box.querySelectorAll('[data-stale-text]').forEach(function (el) { el.textContent = el.getAttribute('data-stale-text'); });
+    if (box.hasAttribute('data-stale-text')) box.textContent = box.getAttribute('data-stale-text');
+    box.querySelectorAll('.stale-note').forEach(function (n) { n.hidden = false; });
+  });
+
+  /* ── Weekly tarot: open the week chosen in the selector ── */
+  var weekSelect = document.getElementById('weekSelect');
+  if (weekSelect) {
+    weekSelect.addEventListener('change', function () {
+      if (weekSelect.value) window.location.href = weekSelect.value;
+    });
+  }
+
   /* ── Mystic Musings: filter by topic ── */
   var chips = document.querySelectorAll('.filter-chip');
   if (chips.length) {
