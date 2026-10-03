@@ -138,7 +138,7 @@
       if (weekly) weekly.href = weekly.href.split('#')[0] + '#mulank-' + mul.value;
 
       result.hidden = false;
-      store.set('myma-mulank', String(mul.value));
+      store.set('myma-mulank-dob', String(mul.value));
       result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
@@ -152,7 +152,9 @@
     var chipWrap = document.getElementById('mulankJumpChips');
     var mini = document.getElementById('mulankMini');
     var miniWrap = document.getElementById('mulankMiniChips');
-    var saved = store.get('myma-mulank');
+    // Only a Mulank worked out with the calculator counts as "yours"
+    var saved = store.get('myma-mulank-dob');
+    try { window.localStorage.removeItem('myma-mulank'); } catch (e) {}
     var cards = [];
 
     function makeChip(n, small) {
@@ -162,7 +164,6 @@
       a.textContent = n;
       a.setAttribute('aria-label', 'Mulank ' + n);
       a.setAttribute('data-n', n);
-      a.addEventListener('click', function () { store.set('myma-mulank', n); });
       return a;
     }
 
