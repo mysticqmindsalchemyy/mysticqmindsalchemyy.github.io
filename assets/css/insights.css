@@ -19,6 +19,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
+  font-variant-numeric: lining-nums; /* clear modern numbers: a "1" never looks like an "I" */
   font-size: 1.15rem;
   line-height: 1.75;
   color: var(--ink);
