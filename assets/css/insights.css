@@ -418,3 +418,11 @@ footer .footer-copy { color: #3a3a5c; opacity: 0.8; }
 .site-footer .site-footer-social a { color: #1d2a5c; }
 .site-footer .site-footer-social a:hover { color: #8a5a12; }
 .site-footer .site-footer-copy { color: rgba(29,42,92,0.7); }
+
+/* ─── BRUSHED GOLD BACKGROUND ─── */
+html { background-color: #f3e3bd; }
+body { background: transparent !important; }
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(rgba(252,246,232,0.55), rgba(252,246,232,0.55)), url("../img/gold-bg.jpg") center / cover no-repeat;
+}
