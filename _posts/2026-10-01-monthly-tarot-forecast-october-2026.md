@@ -10,7 +10,6 @@ Your **monthly tarot forecast for October 2026**. Find your Mulank below to see 
 
 *For everyone born on the 1st, 10th, 19th or 28th of any month*
 
-![Mulank 1 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-1.jpg)
 
 **Theme of the month:** October 2026 is a Universal Month 2, the number of partnership. Your success grows when you let your heart and other people in.
 
@@ -60,7 +59,6 @@ You don’t always have to lead with logic and strength. Follow what truly inspi
 
 *For everyone born on the 2nd, 11th, 20th or 29th of any month*
 
-![Mulank 2 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-2.jpg)
 
 **Theme of the month:** October 2026 is a Universal Month 2, and the number 2 appears twice in your cards. Step off the fence: choose with a clear mind and an open heart.
 
@@ -110,7 +108,6 @@ Use your mind as much as your heart. Set clear boundaries, say what you mean, an
 
 *For everyone born on the 3rd, 12th, 21st or 30th of any month*
 
-![Mulank 3 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-3.jpg)
 
 **Theme of the month:** October 2026 is a Universal Month 2. Your ideas and energy run high: pace yourself so they build something lasting.
 
@@ -160,7 +157,6 @@ Go after what inspires you with focus and confidence. Your words carry great pow
 
 *For everyone born on the 4th, 13th, 22nd or 31st of any month*
 
-![Mulank 4 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-4.jpg)
 
 **Theme of the month:** Opening with the Wheel of Fortune and closing with The Magician, this is a significant month. Life may shift, and you hold the tools to steer it.
 
@@ -210,7 +206,6 @@ Set a clear intention for what you want to create, then take one confident step 
 
 *For everyone born on the 5th, 14th or 23rd of any month*
 
-![Mulank 5 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-5.jpg)
 
 **Theme of the month:** Ruled by Mercury, you will feel this month’s messages and momentum. Ideas become conversations, and conversations bring movement.
 
@@ -260,7 +255,6 @@ Be ready to receive. When a call comes, answer it. When an opportunity appears, 
 
 *For everyone born on the 6th, 15th or 24th of any month*
 
-![Mulank 6 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-6.jpg)
 
 **Theme of the month:** Your foundations are strong this month, and that strength helps you release what no longer fits.
 
@@ -310,7 +304,6 @@ If something shifts suddenly, don’t cling to what is already falling. When old
 
 *For everyone born on the 7th, 16th or 25th of any month*
 
-![Mulank 7 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-7.jpg)
 
 **Theme of the month:** Three royal cards ask you to lead and take charge this month, and the angels remind you that your strength comes from stillness.
 
@@ -360,7 +353,6 @@ Step away from the noise each day. Meditate, pray, sleep deeply, or simply sit i
 
 *For everyone born on the 8th, 17th or 26th of any month*
 
-![Mulank 8 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-8.jpg)
 
 **Theme of the month:** Ruled by Saturn, you know the value of patience. This month the waiting turns into movement, and long delays begin to lift.
 
@@ -410,7 +402,6 @@ Things that were stuck will start moving, and quickly. When doors open, don’t 
 
 *For everyone born on the 9th, 18th or 27th of any month*
 
-![Mulank 9 October 2026 tarot spread with the five drawn cards](/assets/img/monthly/2026-10-mulank-9.jpg)
 
 **Theme of the month:** Ruled by Mars, you charge ahead with courage. This month, blend that fire with patience, choose wisely, and trust that luck is turning your way.
 
