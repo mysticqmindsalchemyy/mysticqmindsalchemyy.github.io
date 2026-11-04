@@ -29,8 +29,8 @@ Your **Mulank**, or root number, comes from the day you were born. In Indian num
       <p><strong>Watch out for:</strong> <span id="resWatch"></span></p>
       <p class="calc-bhagyank">Your <strong>Bhagyank</strong> (destiny number) is <strong id="resBhagyank"></strong>, calculated as <span id="resBhagyankWorking"></span>.</p>
       <div class="calc-actions">
-        {% assign tarot_posts = site.posts | where: "category", "Weekly Tarot" %}
-        {% if tarot_posts.size > 0 %}<a class="btn-primary" id="resWeekly" href="{{ tarot_posts.first.url | relative_url }}">Read this week's reading for you</a>{% endif %}
+        {% assign tarot_posts = site.posts | where: "category", "Monthly Reading" %}
+        {% if tarot_posts.size > 0 %}<a class="btn-primary" id="resWeekly" href="{{ '/monthly-reading/' | relative_url }}">Read this month's reading for you</a>{% endif %}
         <a class="btn-ghost" href="{{ '/#book' | relative_url }}">Get a full numerology reading</a>
       </div>
     </div>

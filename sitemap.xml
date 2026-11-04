@@ -5,9 +5,8 @@ layout: null
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>{{ '/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
   <url><loc>{{ '/musings/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
-  <url><loc>{{ '/weekly-tarot/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
   <url><loc>{{ '/monthly-reading/' | absolute_url }}</loc><lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod></url>
   <url><loc>{{ '/mulank-calculator/' | absolute_url }}</loc></url>
-  {% for post in site.posts %}{% unless post.permalink == '/mulank-calculator/' %}<url><loc>{{ post.url | absolute_url }}</loc><lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod></url>
+  {% for post in site.posts %}{% unless post.permalink == '/mulank-calculator/' or post.category == 'Weekly Tarot' %}<url><loc>{{ post.url | absolute_url }}</loc><lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod></url>
   {% endunless %}{% endfor %}
 </urlset>

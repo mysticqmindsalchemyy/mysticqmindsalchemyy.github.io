@@ -13,7 +13,7 @@ layout: null
     "url": {{ '/monthly-reading/' | relative_url | jsonify }},
     "month_end": {{ end_str | date: '%s' }}
   }{% else %}null{% endif %},
-  "latest": [{% for post in site.posts limit: 3 %}
+  {% assign shown = site.posts | where_exp: "p", "p.category != 'Weekly Tarot'" %}"latest": [{% for post in shown limit: 3 %}
     {
       "title": {{ post.title | jsonify }},
       "url": {{ post.url | relative_url | jsonify }},
