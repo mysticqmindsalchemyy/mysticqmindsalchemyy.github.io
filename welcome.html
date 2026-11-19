@@ -54,7 +54,14 @@
   #care{display:none;margin:22px auto 0}
   #care h2.ct{font-family:Cinzel,serif;font-weight:700;font-size:1.35rem;color:var(--navy);text-align:center;letter-spacing:.05em}
   #care .cs{text-align:center;font-style:italic;color:var(--gold);margin-bottom:6px}
-  #care h3{font-family:Cinzel,serif;font-weight:700;font-size:1.05rem;color:var(--navy);letter-spacing:.04em;margin:24px 0 6px;padding-top:18px;border-top:1px dashed rgba(138,100,20,.45)}
+  #care .cd{border-top:1px dashed rgba(138,100,20,.45)}
+  #care .cd:last-of-type{border-bottom:1px dashed rgba(138,100,20,.45)}
+  #care summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 2px;font-family:Cinzel,serif;font-weight:700;font-size:1.05rem;color:var(--navy);letter-spacing:.04em}
+  #care summary::-webkit-details-marker{display:none}
+  #care summary::after{content:'';flex:0 0 auto;width:9px;height:9px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);margin-top:-5px;transition:transform .2s}
+  #care details[open] summary::after{transform:rotate(225deg);margin-top:4px}
+  #care .cb{padding:0 2px 16px}
+  #care .ct+.cs{margin-bottom:16px}
   #care ul{padding-left:1.2rem}
   #care li{margin:4px 0}
   #care li::marker{color:var(--gold2)}
@@ -83,10 +90,11 @@
 
 <main id="letter"><div id="letterBody" aria-live="polite"></div>
 <section id="care" class="paper" aria-labelledby="careTitle">
-  <h2 class="ct" id="careTitle">Caring for Your Crystals</h2>
-  <p class="cs">Simple rituals to keep their energy strong</p>
+  <h2 class="ct" id="careTitle">Your Crystal Rituals &amp; Care</h2>
+  <p class="cs">Before you wear them, and every day after. Tap each one to open it.</p>
 
-  <h3>Set your intention</h3>
+  <details class="cd"><summary>Set your intention</summary>
+  <div class="cb">
   <p>Whenever you set or renew your intention:</p>
   <ul>
     <li>Sit quietly and hold your crystals in both palms.</li>
@@ -95,16 +103,18 @@
     <li>Say it softly, as if it is already true. For example: “I am calm and clear.”</li>
     <li>Wear each piece as guided in your letter above.</li>
   </ul>
-
-  <h3>Cleanse your crystals</h3>
+  </div></details>
+  <details class="cd"><summary>Cleanse your crystals</summary>
+  <div class="cb">
   <p>Crystals absorb the energy around them. Cleanse them when they feel heavy, after a difficult day, or once a month:</p>
   <ul>
     <li><strong>Sacred smoke:</strong> gently pass them through smoke with the intention that they are cleared.</li>
     <li><strong>Sound:</strong> ring a bell or singing bowl close to them for a minute.</li>
   </ul>
   <p class="note">Avoid water and salt. Some stones lose their shine, and the elastic weakens.</p>
-
-  <h3>Charge your crystals</h3>
+  </div></details>
+  <details class="cd"><summary>Charge your crystals</summary>
+  <div class="cb">
   <ul>
     <li><strong>Selenite plate:</strong> rest them on a selenite plate for 3–4 hours.</li>
     <li><strong>Moonlight:</strong> leave them in moonlight on a windowsill for 3–4 hours, especially on a full moon.</li>
@@ -112,16 +122,18 @@
     <li><strong>Your intention:</strong> hold them, repeat your intention, and imagine golden light filling every bead.</li>
   </ul>
   <p class="note">Keep them out of direct sunlight. Amethyst, citrine and rose quartz can fade in the sun.</p>
-
-  <h3>Everyday care</h3>
+  </div></details>
+  <details class="cd"><summary>Everyday care</summary>
+  <div class="cb">
   <ul>
     <li>Remove them before bathing, swimming or exercising.</li>
     <li>Put on perfume and lotion before wearing them, never after.</li>
     <li>Roll bracelets onto your wrist instead of stretching them.</li>
     <li>When not wearing them, keep them in a clean space where no one else touches them.</li>
   </ul>
-
-  <h3>Good to know</h3>
+  </div></details>
+  <details class="cd"><summary>Good to know</summary>
+  <div class="cb">
   <ul>
     <li><strong>Natural stones, natural marks:</strong> because every MyMA crystal is natural, tiny inclusions, lines or marks are part of its character. They are a sign of a real stone, not damage.</li>
     <li><strong>Authentically sourced:</strong> each crystal is sourced from authentic origins and checked with care before it reaches you.</li>
@@ -131,11 +143,7 @@
     <li><strong>If it breaks all of a sudden:</strong> do not worry. In crystal traditions, a crystal that breaks on its own is often seen as having absorbed heavy energy for you and completed its purpose. Gently gather the beads, thank them, and either return them to the earth by placing them in soil or a plant pot, or keep them in a clean, sacred space.</li>
     <li><strong>Need new crystals?</strong> Once a crystal has broken or completed its purpose, a replacement is a fresh piece, chosen and energised anew for you, and is ordered as a new piece.</li>
   </ul>
-
-  <h3>Need guidance?</h3>
-  <p>At any point, if you have a doubt or need more guidance about your crystals, I would love to meet you in a personal session. Book a one-on-one session by choosing <strong>Crystal Consultation</strong>, and we can talk.</p>
-  <p>Do not worry, this Crystal Consultation is absolutely free. All I want is for you to receive the best results while wearing your MyMA crystals.</p>
-  <a class="book" href="/#book">Book a Free Crystal Consultation</a>
+  </div></details>
 
   <p class="disc">MyMA crystals are spiritual and intention-setting tools rooted in crystal traditions and numerology. They are not a substitute for medical, psychological or financial advice. Natural stones vary, so colour and pattern may differ slightly.</p>
 </section>
@@ -171,7 +179,7 @@
         + '</section>';
     });
     h += '<section class="closing">'+paras(L.closing)
-      + '<a class="jump" href="#care">🌸 How to care for your crystals ↓</a>'
+      + '<a class="jump" href="#care">🌸 Your crystal rituals &amp; care ↓</a>'
       + paras(L.signoff || 'I’m always here for you whenever you need guidance.')
       + '<div class="sign">With love and light,<div class="s">Tapashree</div><small>Mysticq Minds Alchemyy · Decode • Align • Transform</small></div></section></article>'
 ;
